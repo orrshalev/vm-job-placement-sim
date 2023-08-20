@@ -43,12 +43,8 @@ def index():
 def add_user():
     json = request.json
     job_time_s = json["timeSeconds"]
-    eval_time = json["evaluationTime"]
-    start_time = json["startTime"]
     if job_time_s and request.method == "POST":
         sleep(float(job_time_s))
-        if time.time() - start_time < eval_time:
-            return jsonify("Job surpassed evaluation time")
         sql = "INSERT INTO jobs VALUES ()"
         conn = mysql.connect()
         cursor = conn.cursor()

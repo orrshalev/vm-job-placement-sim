@@ -67,27 +67,19 @@ logging.info("URL: %s", URL)
 logging.info("EVALUATION_TIME: %d", EVALUATION_TIME)
 
 
-def submit_job(
-    url: str, completion_time: float, evaluation_time: float, start_time: float
-):
+def submit_job(url: str, completion_time: float):
     r = requests.post(
         f"{url}/job",
         json={
             "timeSeconds": completion_time,
-            "startTime": start_time,
-            "evaluationTime": evaluation_time,
         },
     )
     print(r.content)
 
 
-start_time = time.time()
+# start_time = time.time()
 # while time.time() - start_time < EVALUATION_TIME:
-for _ in range(400):
-    completion_time = random.uniform(COMPLETION_TIME_LOWER, COMPLETION_TIME_UPPER)
-    # submit_job(URL, completion_time)
-    p = Process(
-        target=submit_job, args=(URL, completion_time, EVALUATION_TIME, start_time)
-    )
-    p.start()
-    # time.sleep(0.01)
+# for _ in range(400):
+completion_time = random.uniform(COMPLETION_TIME_LOWER, COMPLETION_TIME_UPPER)
+submit_job(URL, 1)
+# time.sleep(0.01)
