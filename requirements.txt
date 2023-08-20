@@ -1,3 +1,7 @@
 Flask
+Flask-MySQL
+PyMySQL
 uWSGI
+mysql-connector-python
 cryptography
+requests
